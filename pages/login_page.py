@@ -7,6 +7,7 @@ class Login(BasePage):
     PASSWORD_FIELD = (By.ID, "userPassword")
     LOGIN_BTN = (By.NAME, "login")
     ERROR_MESSAGE = (By.CSS_SELECTOR, ".toast-container")
+    HOME_BUTTON = (By.XPATH, "//button[text()=' HOME ']")
 
     def __init__(self, driver):
         super().__init__(driver)
@@ -15,7 +16,7 @@ class Login(BasePage):
         self.do_send_keys(self.EMAIL_FIELD, email)
         self.do_send_keys(self.PASSWORD_FIELD, password)
         try:
-            self.driver.execute_script("argument[0].scrollIntoView(true);", self.driver.find_element(*self.LOGIN_BTN))
+            self.driver.execute_script("arguments[0].scrollIntoView(true);", self.driver.find_element(*self.LOGIN_BTN))
             self.do_click(self.LOGIN_BTN)
 
         except Exception as e:
@@ -26,4 +27,7 @@ class Login(BasePage):
 
     def get_login_page_url(self):
         return self.get_current_url
+
+    def get_home_text(self):
+        return self.get_element_text(self.HOME_BUTTON)
 

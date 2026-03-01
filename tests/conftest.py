@@ -1,4 +1,6 @@
 import pytest
+import allure
+import os
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.firefox.service import Service
@@ -14,10 +16,6 @@ def pytest_addoption(parser):
     parser.addoption("--browser", action='store', default='chrome', help='Type of browser: chrome,edge,ff')
     parser.addoption("--headless", action='store', default='false', help='true or false')
 
-
-import allure
-import pytest
-import os
 
 def pytest_sessionfinish(session, exitstatus):
     """
